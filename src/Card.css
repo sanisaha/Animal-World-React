@@ -1,0 +1,66 @@
+.card {
+  background-color: snow;
+  box-shadow: 0 0 5px rgb(121, 121, 121);
+  width: 200px;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 1rem;
+  text-transform: capitalize;
+  filter: grayscale(100%);
+  transition: all 0.5s;
+  position: relative;
+}
+
+.card:hover {
+  box-shadow: 0 0 20px rgb(121, 121, 121);
+  filter: grayscale(0%);
+}
+
+.card h3,
+.card a,
+.likes {
+  margin: 1rem;
+  color: #333;
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+}
+
+button {
+  padding: 0.5rem;
+  background-color: rgb(152, 110, 4);
+  border: 1px solid rgb(152, 110, 4);
+  box-shadow: 0 0 5px #333;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  color: white;
+}
+button:hover {
+  background-color: rgb(204, 147, 2);
+}
+
+.remove {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  font-size: 0.8rem;
+}
+
+.likes_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+.likes {
+  text-align: center;
+  font-size: 1.2rem;
+}
