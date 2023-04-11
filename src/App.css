@@ -6,6 +6,17 @@
   height: 40vmin;
   pointer-events: none;
 }
+.animal-container {
+  display: flex;
+  width: 100%;
+}
+.animal-container :nth-child(1) {
+  width: 50%;
+  height: 400px;
+}
+.animal-container :nth-child(2) {
+  width: 50%;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
