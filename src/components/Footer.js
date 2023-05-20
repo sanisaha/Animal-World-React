@@ -2,8 +2,8 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div style={{padding:'1rem'}}>
-      <p>Copyright © 2023. All rights reserved.</p>
+    <div style={{padding:'0.5rem'}}>
+      <small>Copyright © 2023. All rights reserved.</small>
     </div>
   );
 };

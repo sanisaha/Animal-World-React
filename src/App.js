@@ -1,70 +1,55 @@
 import React, { Component } from 'react';
-import Animals from './Animals';
-import Footer from './Footer';
+import Footer from './components/Footer';
 import { animals, birds } from './animalsList';
-import Navbar from './Navbar';
-import AnimalHome from './AnimalHome';
-import BirdHome from './BirdHome';
+import Navbar from './components/Navbar';
+import AnimalHome from './UI/AnimalHome';
+import BirdHome from './UI/BirdHome';
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Bird from './Bird';
+import About from './pages/About';
+import List from './pages/List';
 
 class App extends Component {
   state = {
     animals: animals,
     birds: birds,
     title: 'Living world',
-    searchInput: ''
+    searchInput: '',
+    data: []
   }
 
-  removeHandler = (name) => {
-    const updatedArray = this.state.animals.filter(animal => animal.name !== name)
-    this.setState({
-      animals: updatedArray
-    })
+  componentDidMount(){
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
+    .then(res => res.json())
+    .then(data => this.setState({data: data.results}))
   }
-  removeHandlerBird = (name) => {
-    const updatedArray = this.state.birds.filter(bird => bird.name !== name)
+  
+  removeHandler = (name, title) => {
+    const updatedArray = this.state[title].filter(item => item.name !== name)
     this.setState({
-      birds: updatedArray
+      [title]: updatedArray
     })
   }
 
-  likesHandler = (name, action) => {
-    this.setState((prevState) => {
-      const updatedArray = prevState.animals.map((animal) => {
-        if (animal.name === name) {
+  likesHandler = (name, action, list) => {
+      const updatedArray = this.state[list].map((item) => {
+        if (item.name === name) {
           if (action === 'add') {
-            return { ...animal, likes: animal.likes + 1 }
+            return { ...item, likes: item.likes + 1 }
           } else {
-            return { ...animal, likes: animal.likes - 1 }
+            return { ...item, likes: item.likes - 1
+            }
           }
         } else {
-          return animal
+          return item
         }
       })
-      return {
-        animals: updatedArray
-      }
-    })
-  }
-  likesHandlerBird = (name, action) => {
-    this.setState((prevState) => {
-      const updatedArray = prevState.birds.map((bird) => {
-        if (bird.name === name) {
-          if (action === 'add') {
-            return { ...bird, likes: bird.likes + 1 }
-          } else {
-            return { ...bird, likes: bird.likes - 1 }
-          }
-        } else {
-          return bird
+            
+      this.setState(
+        {
+          [list]: updatedArray
         }
-      })
-      return {
-        birds: updatedArray
-      }
-    })
+      ) 
   }
 
   searchHandler = (e) => {
@@ -88,18 +73,24 @@ class App extends Component {
           <AnimalHome></AnimalHome>
           <BirdHome></BirdHome>
         </div>}></Route>
-        <Route path='/animal' element={<Animals
+        <Route path='/animal' element={<List
+          title = 'animals'
           data={this.state.animals}
           removeHandler={this.removeHandler}
           likesHandler={this.likesHandler}
           searchHandler={this.searchHandler}
-          searchInput={this.state.searchInput} />}></Route>
-        <Route path='/bird' element={<Bird
+          searchInput={this.state.searchInput} 
+          />}></Route>
+        <Route path='/bird' element={<List
+          title = 'birds'
           data={this.state.birds}
-          removeHandler={this.removeHandlerBird}
-          likesHandler={this.likesHandlerBird}
+          removeHandler={this.removeHandler}
+          likesHandler={this.likesHandler}
           searchHandler={this.searchHandler}
-          searchInput={this.state.searchInput} />}></Route>
+          searchInput={this.state.searchInput}
+          />}></Route>
+        <Route path='/about' element={<About></About>}>
+        </Route>
       </Routes>
       <Footer />
       </BrowserRouter>

@@ -28,3 +28,6 @@
 .navbar-item {
   margin-left: 20px;
 }
+.active:hover {
+  color: orangered;
+}

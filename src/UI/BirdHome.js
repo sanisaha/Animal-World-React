@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const BirdHome = () => {
     return (
-        <Link to='/bird' style={{backgroundImage:`url('https://images.unsplash.com/photo-1452570053594-1b985d6ea890?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGJpcmR8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60')`,
+        <Link to='/bird' style={{backgroundImage:`url('https://images.unsplash.com/photo-1614116233448-ba0c93ac3e82?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODl8fGVhZ2xlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60')`,
         backgroundSize:'cover',
         textDecoration:'none',
         color:'white'}}>
